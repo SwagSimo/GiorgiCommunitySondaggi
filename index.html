@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Giorgi's Community - Sondaggi</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Bree+Serif|Pacifico|Lato|Montserrat&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="img/icona.png" type="image/png" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <script src="librerie_p5\p5.js"></script>
+  <script src="librerie_p5\p5.dom.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.1/firebase-analytics.js"></script>
+
+</head>
+
+<body>
+
+  <nav>
+    <img src="img/Logo Giorgi's Community.svg" alt="" width="70px" title="Giorgi's Community">
+
+    <h3><span id="s1">Giorgi's </span><span id="s2">Community</span><span id="s3"> - </span><span
+        id="s4">Sondaggi</span>
+    </h3>
+
+    <div>
+      <a class="btnAzione" id="aInfo" href="javascript:void(0)">info</a>
+      <a class="btnAzione" id="aLogin" href="javascript:void(0)">login</a>
+    </div>
+  </nav>
+
+  <section>
+    <img src="img/svg sondaggio.svg" alt="" width="350px">
+    <div class="contenuto">
+      <h3 id="nome">Simone Micelli</h3>
+      <h3 id="carica">Rappresentante d'istituto</h3>
+      <h3 id="info">Ciao! Benvenuto nel sito per i sondaggi del C.d.I. Tutto ciò che devi fare è effettuare il login,
+        cliccare il
+        sondaggio attivo e di selezionare
+        la tua scelta.</br>Grazie per la collaborazione! ;)
+      </h3>
+    </div>
+  </section>
+
+  <section id="container">
+    <div class="cardSondaggio">
+      <div class="fade fade1">
+        <div class="sond">
+
+        </div>
+      </div>
+
+      <div class="fade fade2">
+        <h2 class="preview"></h2>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>Copyright © 2019 Giorgi's Community</br>some rights reserved</h3>
+
+    <div>
+      <a href="https://www.facebook.com/ITTGiorgiBrindisi/">facebook</a>
+      <a href="https://www.instagram.com/giorgi_community/">instagram</a>
+    </div>
+  </footer>
+
+  <script src="main\sketch.js"></script>
+</body>
+
+</html>
