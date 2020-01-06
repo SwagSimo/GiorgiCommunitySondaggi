@@ -29,12 +29,11 @@ function setup() {
       emailAutorizzate.push(emailClassi[classi[i]]);
     }
 
-    let emailIstituto = datEmail.RappresentantiIstituto; // EMAIL RAPPR ISTITUTO
+    let emailIstituto = Object.values(datEmail.ConsiglioIstituto); // EMAIL RAPPR ISTITUTO
     // PUSH DELLE EMAIL DEI RAPPR ISTITUTO
-    emailAutorizzate.push(emailIstituto["Cannalire"]);
-    emailAutorizzate.push(emailIstituto["Longo"]);
-    emailAutorizzate.push(emailIstituto["Micelli"]);
-    emailAutorizzate.push(emailIstituto["Pacciolla"]);
+    for (let i = 0; i < emailIstituto.length; i++) {
+      emailAutorizzate.push(emailIstituto[i]);
+    }
 
   }, () => { console.log("errEmail"); });
 
@@ -60,7 +59,7 @@ function setup() {
       }
       else
         if (sondaggi.LivAutorizzazione === 2) {
-          preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Rappresentanti di istituto e professori");
+          preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Consiglio d'Istituto");
         }
 
     oggetto = createElement("h2", sondaggi.Oggetto).parent(sond);
@@ -108,6 +107,7 @@ function setup() {
         // The signed-in user info.
         user = result.user;
         btnAzione[1].html(user.displayName);
+        btnAzione[1].addClass("logEff");
         btnAzione[1].attribute("title", "LOGOUT");
 
         if (sondaggi.LivAutorizzazione === 0) {
@@ -178,13 +178,10 @@ function checkUserAutorizzato1(user) {
   }
 }
 function checkUserAutorizzato2(user) {
-  for (let i = emailAutorizzate.length; i > 50; i--) {
+  for (let i = 51; i < emailAutorizzate.length; i++) {
     if (user.email === emailAutorizzate[i]) {
       autorizzato = true;
-      if (i === 51) { Rappr = "R.I. Cannalire"; }
-      else if (i === 52) { Rappr = "R.I. Longo"; }
-      else if (i === 53) { Rappr = "R.I. Micelli"; }
-      else if (i === 54) { Rappr = "R.I. Pacciolla"; }
+      Rappr = "Membro del Consiglio: " + (i + 1);
     }
   }
 }

@@ -48,10 +48,13 @@ nav div {
   transition: all 0.5s ease;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
-#aInfo { color: #0061ae; transition: all 0.3s ease;}
+#aInfo { color: #0061ae; transition: all 0.3s ease; position: relative;}
+#aInfo::before {content: ""; position: absolute; bottom: 0; left: 50%; height: 3px; width: 0%; background-color: #0061ae; transition: all 0.3s ease;}
 #aLogin { color: #ec1d24; border: solid 2px #ec1d24; transition: all 0.3s ease; }
-#aInfo:hover { opacity: 0.7; }
+#aInfo:hover::before {width: 100%; left: 0;}
 #aLogin:hover { color: #e4e4e4; background: #ec1d24; box-shadow: 0px 0px 6px #ec1d24a6;}
+
+.logEff {color: #e4e4e4 !important; background: #ec1d24; box-shadow: 0px 0px 6px #ec1d24a6;}
 
 section {
   margin-top: 120px;
@@ -161,7 +164,7 @@ footer div a:hover {
 .contOpzioni {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, [col-start] minmax(150px, 1fr) [col-end]);
+  grid-template-columns: repeat(auto-fit, [col-start] minmax(150px, 1fr) [col-end]);
   grid-gap: 20px;
   user-select: none;
   margin: 0;
@@ -177,14 +180,10 @@ footer div a:hover {
   border: 1px solid #0061ae;
   border-radius: 20px;
   font-family: "Noto Sans", sans-serif;
-  transition: 0.3s;
-}
-.cardSondaggio .unSel:hover {
-  background: radial-gradient(#2575fc 0%, #6a11cb 120%);
-  box-shadow: 0px 0px 5px #6b11cba2;
-  color: #fff;
+  transition: all 0.3s ease;
 }
 .selOpz {
+  animation: backScale forwards 1s ease;
   background-image: radial-gradient(#2575fc 0%, #6a11cb 120%);
   box-shadow: 0px 0px 5px #6b11cba2;
   width: 100%;
@@ -197,6 +196,16 @@ footer div a:hover {
   font-family: "Noto Sans", sans-serif;
   transition: 0.3s;
   text-align: center;
+}
+@keyframes backScale {
+  0% {
+    background-position: 50%;
+    background-size: 50%;
+  }
+  100% {
+    background-position: 0%;
+    background-size: 120%;
+  }
 }
 .cardSondaggio .fade.fade2 {
   background: #111;
@@ -228,6 +237,7 @@ footer div a:hover {
   transition: 0.5s;
   text-align: center;
   text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 .cardSondaggio:hover .fade.fade2.open h2 {
   font-size: 0.7em;
@@ -248,6 +258,12 @@ footer div a:hover {
   box-shadow: 0px 0px 6px #ec1d24a6;
   color: #fff;
 }
+
+
+
+
+
+
 
 @media only screen and (max-width: 1024px) {
   section {
@@ -271,6 +287,11 @@ footer div a:hover {
     width: 100%;
   }
 }
+
+
+
+
+
 @media only screen and (max-width: 425px) {
   nav {
     height: 150px;
@@ -313,14 +334,14 @@ footer div a:hover {
   }
   .contOpzioni {
     width: 100%;
-    grid-template-columns: repeat(auto-fill, [col-start] 1fr [col-end]);
+    grid-template-columns: repeat(auto-fit, [col-start] 1fr [col-end]);
   }
   section .contenuto {
     width: 90%;
   }
   .cardSondaggio {
-    width: 85%;
-    height: 800px;
+    width: 100%;
+    height: 100vh;
   }
   .cardSondaggio .fade.fade1 h2 {
     font-size: 20px;
