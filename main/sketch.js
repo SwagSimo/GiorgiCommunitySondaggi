@@ -17,7 +17,7 @@ function setup() {
 
   firebaseInit();
   let database = firebase.database();
-  console.clear();
+  // console.clear();
 
   // DOWNLOAD DI TUTTE LE EMAIL AUTORIZZATE
   database.ref("Email").once("value", (DataEmail) => {
@@ -91,18 +91,14 @@ function setup() {
 
 
     invia.mouseClicked(() => {
-      database.ref(`Sondaggi/Voti/${numScelta}`).set(sondaggi.Voti[numScelta] + Rappr + ";");
-      location.reload();
+      if (autorizzato === true) {
+        database.ref(`Sondaggi/Voti/${numScelta}`).set(sondaggi.Voti[numScelta] + Rappr + ";");
+        location.reload();
+      }
     });
 
-  }, () => { console.log("errSondaggi"); });
-
-  let provider = new firebase.auth.GoogleAuthProvider();
-  // CLICK DEL BTN LOGIN E POPUP
-  btnAzione[1].mouseClicked(() => {
-    if (user === undefined) {
-      firebase.auth().signInWithPopup(provider).then(function (result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
+    firebase.auth().getRedirectResult().then((result) => {
+      if (result.credential) {
         token = result.credential.accessToken;
         // The signed-in user info.
         user = result.user;
@@ -112,8 +108,10 @@ function setup() {
 
         if (sondaggi.LivAutorizzazione === 0) {
           Rappr = user.displayName;
-          if (!(checkInserimento(Rappr)))
+          if (!(checkInserimento(Rappr))) {
+            autorizzato = true;
             face2.addClass("open");
+          }
           else
             preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
         } else if (sondaggi.LivAutorizzazione === 1) {
@@ -133,24 +131,27 @@ function setup() {
               preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
           }
         }
-      }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        console.log(errorCode);
-        console.log(errorMessage);
-        console.log(email);
-        console.log(credential);
-        // ...
-      });
+      }
+    });
+
+  }, () => { console.log("errSondaggi"); });
+
+  // CLICK DEL BTN LOGIN E POPUP
+  let provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('profile');
+  provider.addScope('email');
+
+  btnAzione[1].mouseClicked(() => {
+    if (user === undefined) {
+
+      firebase.auth().signInWithRedirect(provider);
+
+      // firebase.auth().signInWithPopup(provider).then(function (result) {
     } else {
       location.reload();
     }
   });
+
 }
 
 function firebaseInit() {
