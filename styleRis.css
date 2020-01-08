@@ -81,6 +81,9 @@
   .nav {
     margin-right: 0;
   }
+  .nav a {
+    margin-left: 0;
+    margin-right: 15px;
   #container {
     grid-template-columns: repeat(auto-fit, [col-start] minmax(150px, 1fr) [col-end]);
     grid-gap: 20px;
