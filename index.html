@@ -41,7 +41,8 @@
     <div class="contenuto">
       <h3 id="nome">Simone Micelli</h3>
       <h3 id="carica">Rappresentante d'istituto</h3>
-      <h3 id="info">Ciao! Benvenuto nel sito per i sondaggi del Giorgi. Tutto ciò che devi fare è effettuare il login,
+      <h3 id="info">Ciao! Benvenuto nel sito per i sondaggi del Giorgi. Tutto ciò che devi fare è effettuare il login
+        (SE RICHIESTO DAL SONDAGGIO),
         cliccare il
         sondaggio attivo e di selezionare
         la tua scelta.</br>Grazie per la collaborazione! ;)
@@ -64,13 +65,19 @@
   </section>
 
   <footer>
-    <h3>Copyright © 2019 Giorgi's Community</br>some rights reserved</h3>
+    <h3>Copyright © 2019 Giorgi's Community</br>some rights reserved</br>Contatti: simonemicelli47@gmail.com</h3>
 
     <div>
       <a href="https://www.facebook.com/ITTGiorgiBrindisi/">facebook</a>
       <a href="https://www.instagram.com/giorgi_community/">instagram</a>
     </div>
   </footer>
+
+  <script type="application/javascript">
+    let IP_ADDRESS = null;
+    function getIP(json) { IP_ADDRESS = json.ip }
+  </script>
+  <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 
   <script src="main\sketch.js"></script>
 </body>
