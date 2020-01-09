@@ -13,27 +13,30 @@ function setup() {
   database.ref("Sondaggi").once("value", (DataSondaggi) => {
     sondaggi = DataSondaggi.val();
 
-    for (let i = 0; i < sondaggi.Voti.length; i++) {
-      scelte.push(createElement("h2", sondaggi.Opzioni[i]).parent(container));
-      scelte[i].addClass("scelte");
+    if (sondaggi.Attivo) {
+      for (let i = 0; i < sondaggi.Voti.length; i++) {
+        scelte.push(createElement("h2", sondaggi.Opzioni[i]).parent(container));
+        scelte[i].addClass("scelte");
 
-      voti.push(sondaggi.Voti[i]);
-      voti[i] = voti[i].split(";");
-      voti[i].pop();
+        voti.push(sondaggi.Voti[i]);
+        voti[i] = voti[i].split(";");
+        voti[i].pop();
 
-      scelte[i].html(`${scelte[i].html()} : ${voti[i].length}`);
+        scelte[i].html(`${scelte[i].html()} : ${voti[i].length}`);
 
-      par.push(createElement("p", "").parent(scelte[i]).addClass("hide"));
+        par.push(createElement("p", "").parent(scelte[i]).addClass("hide"));
 
-      for (let j = 0; j < voti[i].length; j++) {
-        par[i].html(`${par[i].html()}${voti[i][j]}<br>`);
+        for (let j = 0; j < voti[i].length; j++) {
+          par[i].html(`${par[i].html()}${voti[i][j]}<br>`);
 
-        scelte[i].mouseClicked(() => {
-          par[i].toggleClass("hide");
-        });
+          scelte[i].mouseClicked(() => {
+            par[i].toggleClass("hide");
+          });
+        }
       }
+    } else {
+      createElement("h2", "⊘ Nessun sondaggio attivo.").parent(container).addClass("scelte");
     }
-
   }, () => { console.log("errSondaggi"); });
 }
 

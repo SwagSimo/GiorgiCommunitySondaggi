@@ -41,99 +41,105 @@ function setup() {
   database.ref("Sondaggi").once("value", (DataSondaggi) => {
     sondaggi = DataSondaggi.val();
 
-    for (let i = 0; i < sondaggi.Voti.length; i++) {
-      voti.push(sondaggi.Voti[i]);
-      voti[i] = voti[i].split(";");
-      voti[i].pop();
-      console.log(sondaggi.Opzioni[i] + " : " + voti[i].length);
-    }
-    console.log(voti);
+    if (sondaggi.Attivo) {
+      for (let i = 0; i < sondaggi.Voti.length; i++) {
+        voti.push(sondaggi.Voti[i]);
+        voti[i] = voti[i].split(";");
+        voti[i].pop();
+        console.log(sondaggi.Opzioni[i] + " : " + voti[i].length);
+      }
+      console.log(voti);
 
-    // VISUALIZZARE INFO DI ACCESSO A SONDAGGIO
-    if (sondaggi.LivAutorizzazione === 0) {
-      preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Tutti");
-    }
-    else
-      if (sondaggi.LivAutorizzazione === 1) {
-        preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Rappresentanti di classe");
+      // VISUALIZZARE INFO DI ACCESSO A SONDAGGIO
+      if (sondaggi.LivAutorizzazione === 0) {
+        preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Tutti");
       }
       else
-        if (sondaggi.LivAutorizzazione === 2) {
-          preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Consiglio d'Istituto");
+        if (sondaggi.LivAutorizzazione === 1) {
+          preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Rappresentanti di classe");
         }
+        else
+          if (sondaggi.LivAutorizzazione === 2) {
+            preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Consiglio d'Istituto");
+          }
 
-    oggetto = createElement("h2", sondaggi.Oggetto).parent(sond);
-    domanda = createElement("p", sondaggi.Domanda).parent(sond);
+      oggetto = createElement("h2", sondaggi.Oggetto).parent(sond);
+      domanda = createElement("p", sondaggi.Domanda).parent(sond);
 
-    contOpzioni = createElement("div").addClass("contOpzioni").parent(sond);
+      contOpzioni = createElement("div").addClass("contOpzioni").parent(sond);
 
-    for (let i = 0; i < sondaggi.Opzioni.length; i++) {
-      opzioni.push(createElement("a", sondaggi.Opzioni[i]).parent(contOpzioni));
-      opzioni[i].attribute("href", "javascript:void(0)");
-      opzioni[i].addClass("unSel");
+      for (let i = 0; i < sondaggi.Opzioni.length; i++) {
+        opzioni.push(createElement("a", sondaggi.Opzioni[i]).parent(contOpzioni));
+        opzioni[i].attribute("href", "javascript:void(0)");
+        opzioni[i].addClass("unSel");
 
-      opzioni[i].mouseClicked(() => {
-        for (let j = 0; j < opzioni.length; j++) {
-          opzioni[j].addClass("unSel");
-          opzioni[j].removeClass("selOpz");
+        opzioni[i].mouseClicked(() => {
+          for (let j = 0; j < opzioni.length; j++) {
+            opzioni[j].addClass("unSel");
+            opzioni[j].removeClass("selOpz");
+          }
+          opzioni[i].removeClass("unSel");
+          opzioni[i].addClass("selOpz");
+          numScelta = i;
+        });
+
+      }
+
+      invia = createElement("a", "INVIA").parent(sond);
+      invia.attribute("href", "javascript:void(0)");
+      invia.addClass("invia");
+
+
+
+      invia.mouseClicked(() => {
+        if (autorizzato === true) {
+          database.ref(`Sondaggi/Voti/${numScelta}`).set(sondaggi.Voti[numScelta] + Rappr + ";");
+          database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
+          location.reload();
         }
-        opzioni[i].removeClass("unSel");
-        opzioni[i].addClass("selOpz");
-        numScelta = i;
       });
 
-    }
-
-    invia = createElement("a", "INVIA").parent(sond);
-    invia.attribute("href", "javascript:void(0)");
-    invia.addClass("invia");
-
-
-
-    invia.mouseClicked(() => {
-      if (autorizzato === true) {
-        database.ref(`Sondaggi/Voti/${numScelta}`).set(sondaggi.Voti[numScelta] + Rappr + ";");
-        location.reload();
+      if (sondaggi.LivAutorizzazione === 0) {
+        Rappr = "Anonimo";
+        if (!(checkInserimento(Rappr, "ip"))) {
+          autorizzato = true;
+          face2.addClass("open");
+        }
+        else
+          preview.html("Hai già votato!");
       }
-    });
 
-    firebase.auth().getRedirectResult().then((result) => {
-      if (result.credential) {
-        token = result.credential.accessToken;
-        // The signed-in user info.
-        user = result.user;
-        btnAzione[1].html(user.displayName);
-        btnAzione[1].addClass("logEff");
-        btnAzione[1].attribute("title", "LOGOUT");
+      firebase.auth().getRedirectResult().then((result) => {
+        if (result.credential) {
+          token = result.credential.accessToken;
+          // The signed-in user info.
+          user = result.user;
+          btnAzione[1].html(user.displayName);
+          btnAzione[1].addClass("logEff");
+          btnAzione[1].attribute("title", "LOGOUT");
 
-        if (sondaggi.LivAutorizzazione === 0) {
-          Rappr = user.displayName;
-          if (!(checkInserimento(Rappr))) {
-            autorizzato = true;
-            face2.addClass("open");
-          }
-          else
-            preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
-        } else if (sondaggi.LivAutorizzazione === 1) {
-          checkUserAutorizzato1(user);
-          if (autorizzato === true) {
-            if (!(checkInserimento(Rappr)))
-              face2.addClass("open");
-            else
-              preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
-          }
-        } else if (sondaggi.LivAutorizzazione === 2) {
-          checkUserAutorizzato2(user);
-          if (autorizzato === true) {
-            if (!(checkInserimento(Rappr)))
-              face2.addClass("open");
-            else
-              preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
+          if (sondaggi.LivAutorizzazione === 1) {
+            checkUserAutorizzato1(user);
+            if (autorizzato === true) {
+              if (!(checkInserimento(Rappr)))
+                face2.addClass("open");
+              else
+                preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
+            }
+          } else if (sondaggi.LivAutorizzazione === 2) {
+            checkUserAutorizzato2(user);
+            if (autorizzato === true) {
+              if (!(checkInserimento(Rappr)))
+                face2.addClass("open");
+              else
+                preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
+            }
           }
         }
-      }
-    });
-
+      });
+    } else {
+      preview.html("⊘ Nessun sondaggio attivo");
+    }
   }, () => { console.log("errSondaggi"); });
 
   // CLICK DEL BTN LOGIN E POPUP
@@ -143,10 +149,7 @@ function setup() {
 
   btnAzione[1].mouseClicked(() => {
     if (user === undefined) {
-
       firebase.auth().signInWithRedirect(provider);
-
-      // firebase.auth().signInWithPopup(provider).then(function (result) {
     } else {
       location.reload();
     }
@@ -186,12 +189,22 @@ function checkUserAutorizzato2(user) {
     }
   }
 }
-function checkInserimento(rapp) {
-  for (let i = 0; i < voti.length; i++) {
-    for (let j = 0; j < voti[i].length; j++) {
-      if (rapp === voti[i][j]) {
-        voto = sondaggi.Opzioni[i];
-        return true;
+function checkInserimento(rapp, metodo = "gmail") {
+  if (metodo === "gmail") {
+    for (let i = 0; i < voti.length; i++) {
+      for (let j = 0; j < voti[i].length; j++) {
+        if (rapp === voti[i][j]) {
+          voto = sondaggi.Opzioni[i];
+          return true;
+        }
+      }
+    }
+  } else if (metodo === "ip") {
+    if (sondaggi.IP_ADDRESSES) {
+      ipAddresses = Object.values(sondaggi.IP_ADDRESSES);
+      for (let i = 0; i < ipAddresses.length; i++) {
+        if (IP_ADDRESS === ipAddresses[i])
+          return true;
       }
     }
   }
