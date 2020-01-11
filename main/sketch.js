@@ -118,6 +118,10 @@ function setup() {
           btnAzione[1].addClass("logEff");
           btnAzione[1].attribute("title", "LOGOUT");
 
+          if (sondaggi.LivAutorizzazione === 0 && user.displayName) {
+            Rappr = user.displayName;
+          }
+
           if (sondaggi.LivAutorizzazione === 1) {
             checkUserAutorizzato1(user);
             if (autorizzato === true) {
