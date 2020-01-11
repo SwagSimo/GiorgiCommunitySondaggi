@@ -52,7 +52,7 @@ function setup() {
 
       // VISUALIZZARE INFO DI ACCESSO A SONDAGGIO
       if (sondaggi.LivAutorizzazione === 0) {
-        preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Tutti");
+        preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Accesso: Tutti (anonimi senza login)");
       }
       else
         if (sondaggi.LivAutorizzazione === 1) {
@@ -128,7 +128,7 @@ function setup() {
               if (!(checkInserimento(Rappr)))
                 face2.addClass("open");
               else
-                preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
+                preview.html("✬ Sondaggio " + sondaggi.Data + "</br> " + voto);
             }
           } else if (sondaggi.LivAutorizzazione === 2) {
             checkUserAutorizzato2(user);
@@ -136,7 +136,7 @@ function setup() {
               if (!(checkInserimento(Rappr)))
                 face2.addClass("open");
               else
-                preview.html("✬ Sondaggio " + sondaggi.Data + "</br>Il tuo voto: " + voto);
+                preview.html("✬ Sondaggio " + sondaggi.Data + "</br> " + voto);
             }
           }
         }
@@ -198,7 +198,16 @@ function checkInserimento(rapp, metodo = "gmail") {
     for (let i = 0; i < voti.length; i++) {
       for (let j = 0; j < voti[i].length; j++) {
         if (rapp === voti[i][j]) {
-          voto = sondaggi.Opzioni[i];
+          voto = "Il tuo voto: " + sondaggi.Opzioni[i];
+          return true;
+        }
+      }
+    }
+    if (sondaggi.IP_ADDRESSES) {
+      ipAddresses = Object.values(sondaggi.IP_ADDRESSES);
+      for (let i = 0; i < ipAddresses.length; i++) {
+        if (IP_ADDRESS === ipAddresses[i]) {
+          voto = "Hai già votato!";
           return true;
         }
       }
