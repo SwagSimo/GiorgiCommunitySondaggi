@@ -95,8 +95,6 @@ function setup() {
               database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
               database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
               location.reload();
-            } else {
-              location.reload();
             }
           });
         }
