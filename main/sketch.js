@@ -4,7 +4,6 @@ let sondaggi, numScelta, voto;
 // ELEMENTI DOM
 let btnAzione, contOpzioni, sond, preview, face2,
   oggetto, domanda, opzioni = [], invia;
-let database;
 
 function preload() {
   btnAzione = selectAll(".btnAzione");
@@ -17,7 +16,7 @@ function setup() {
   noCanvas();
 
   firebaseInit();
-  database = firebase.database();
+  let database = firebase.database();
   // console.clear();
 
   // DOWNLOAD DI TUTTE LE EMAIL AUTORIZZATE
