@@ -22,7 +22,7 @@ function setup() {
         voti[i] = voti[i].split(";");
         voti[i].pop();
 
-        scelte[i].html(`${scelte[i].html()} : ${voti[i].length}`);
+        scelte[i].html(`${scelte[i].html()} : ${Object.values(sondaggi.VotiPush[i]).length}`);
 
         par.push(createElement("p", "").parent(scelte[i]).addClass("hide"));
 
