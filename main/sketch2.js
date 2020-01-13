@@ -1,4 +1,4 @@
-let sondaggi, container, scelte = [], voti = [], par = [];
+let sondaggi, container, scelte = [], par = [];
 
 function preload() {
   container = select("#container");
@@ -14,21 +14,20 @@ function setup() {
     sondaggi = DataSondaggi.val();
 
     if (sondaggi.Attivo) {
-      for (let i = 0; i < sondaggi.Voti.length; i++) {
+      for (let i = 0; i < sondaggi.Opzioni.length; i++) {
         scelte.push(createElement("h2", sondaggi.Opzioni[i]).parent(container));
         scelte[i].addClass("scelte");
-
-        voti.push(sondaggi.Voti[i]);
-        voti[i] = voti[i].split(";");
-        voti[i].pop();
 
         scelte[i].html(`${scelte[i].html()} : ${Object.values(sondaggi.VotiPush[i]).length}`);
 
         par.push(createElement("p", "").parent(scelte[i]).addClass("hide"));
 
-        for (let j = 0; j < voti[i].length; j++) {
-          par[i].html(`${par[i].html()}${voti[i][j]}<br>`);
+        let voti = Object.values(sondaggi.VotiPush[i]);
+        for (let j = 0; j < Object.values(sondaggi.VotiPush[i]).length; j++) {
+          // SCRIVE I VOTANTI
+          par[i].html(`${par[i].html()}${voti[j]}<br>`);
 
+          // AGGIUNGE L'EVENT LISTENER DELLA VIEW VOTANTI
           scelte[i].mouseClicked(() => {
             par[i].toggleClass("hide");
           });
