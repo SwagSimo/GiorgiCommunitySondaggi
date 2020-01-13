@@ -93,7 +93,6 @@ function setup() {
 
       invia.mouseClicked(() => {
         if (autorizzato === true) {
-          database.ref(`Sondaggi/Voti/${numScelta}`).set(sondaggi.Voti[numScelta] + Rappr + ";");
           database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
           database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
           location.reload();
