@@ -4,6 +4,7 @@ let sondaggi, numScelta, voto;
 // ELEMENTI DOM
 let btnAzione, contOpzioni, sond, preview, face2,
   oggetto, domanda, opzioni = [], invia;
+let database;
 
 function preload() {
   btnAzione = selectAll(".btnAzione");
@@ -16,7 +17,7 @@ function setup() {
   noCanvas();
 
   firebaseInit();
-  let database = firebase.database();
+  database = firebase.database();
   // console.clear();
 
   // DOWNLOAD DI TUTTE LE EMAIL AUTORIZZATE
@@ -89,9 +90,15 @@ function setup() {
 
       invia.mouseClicked(() => {
         if (autorizzato === true) {
-          database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
-          database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
-          location.reload();
+          database.ref("Sondaggi").once('value').then((s) => {
+            if (!checkIP(s)) {
+              database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
+              database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
+              location.reload();
+            } else {
+              location.reload();
+            }
+          });
         }
       });
 
@@ -219,4 +226,15 @@ function checkInserimento(rapp, metodo = "gmail") {
       }
     }
   }
+}
+function checkIP(s) {
+  const sonda = s.val();
+  const ADDRESSES = Object.values(sonda.IP_ADDRESSES);
+  console.log(ADDRESSES);
+  for (let i = 0; i < ADDRESSES.length; i++) {
+    if (ADDRESSES[i] === IP_ADDRESS) {
+      return true;
+    }
+  }
+  return false;
 }
