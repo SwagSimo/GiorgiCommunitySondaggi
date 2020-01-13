@@ -347,7 +347,7 @@ footer div a:hover {
   }
   .cardSondaggio {
     width: 100%;
-    height: calc(100vh + 50px);
+    height: calc(100vh + 100px);
   }
   .cardSondaggio .fade.fade1 h2 {
     font-size: 20px;
