@@ -3,7 +3,7 @@ let sondaggi, numScelta, voto;
 
 // ELEMENTI DOM
 let btnAzione, contOpzioni, sond, preview, face2,
-  oggetto, domanda, opzioni = [], invia;
+  oggetto, domanda, opzioni = [], invia, inviato = false;
 
 function preload() {
   btnAzione = selectAll(".btnAzione");
@@ -90,10 +90,12 @@ function setup() {
       invia.mouseClicked(() => {
         if (autorizzato === true) {
           database.ref("Sondaggi").once('value').then((s) => {
-            if (!checkIP(s)) {
-              database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
-              database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
-              location.reload();
+            if(!inviato) {
+              if (!checkIP(s)) {
+                database.ref(`Sondaggi/VotiPush/${numScelta}`).push(Rappr);
+                database.ref("Sondaggi/IP_ADDRESSES").push(IP_ADDRESS);
+                location.reload();
+              }
             }
           });
         }
@@ -225,6 +227,7 @@ function checkInserimento(rapp, metodo = "gmail") {
   }
 }
 function checkIP(s) {
+  inviato = true;
   const sonda = s.val();
   const ADDRESSES = Object.values(sonda.IP_ADDRESSES);
   console.log(ADDRESSES);
