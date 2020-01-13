@@ -1,5 +1,5 @@
 let user, token, Rappr, autorizzato = false, emailAutorizzate = [], classi;
-let sondaggi, numScelta, voti = [], voto;
+let sondaggi, numScelta, voto;
 
 // ELEMENTI DOM
 let btnAzione, contOpzioni, sond, preview, face2,
@@ -42,7 +42,7 @@ function setup() {
     sondaggi = DataSondaggi.val();
 
     if (sondaggi.Attivo) {
-      for (let i = 0; i < sondaggi.Voti.length; i++) {
+      for (let i = 0; i < sondaggi.Opzioni.length; i++) {
         console.log(sondaggi.Opzioni[i] + " : " + Object.values(sondaggi.VotiPush[i]).length);
       }
 
@@ -191,9 +191,11 @@ function checkUserAutorizzato2(user) {
 }
 function checkInserimento(rapp, metodo = "gmail") {
   if (metodo === "gmail") {
-    for (let i = 0; i < voti.length; i++) {
-      for (let j = 0; j < voti[i].length; j++) {
-        if (rapp === voti[i][j]) {
+    for (let i = 0; i < Opzioni.length; i++) {
+      let voti = Object.values(sondaggi.VotiPush[i]);
+
+      for (let j = 0; j < voti.length; j++) {
+        if (rapp === voti[j]) {
           voto = "Il tuo voto: " + sondaggi.Opzioni[i];
           return true;
         }
