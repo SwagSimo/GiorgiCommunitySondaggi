@@ -43,12 +43,8 @@ function setup() {
 
     if (sondaggi.Attivo) {
       for (let i = 0; i < sondaggi.Voti.length; i++) {
-        voti.push(sondaggi.Voti[i]);
-        voti[i] = voti[i].split(";");
-        voti[i].pop();
-        console.log(sondaggi.Opzioni[i] + " : " + voti[i].length);
+        console.log(sondaggi.Opzioni[i] + " : " + Object.values(sondaggi.VotiPush[i]).length);
       }
-      console.log(voti);
 
       // VISUALIZZARE INFO DI ACCESSO A SONDAGGIO
       if (sondaggi.LivAutorizzazione === 0) {
