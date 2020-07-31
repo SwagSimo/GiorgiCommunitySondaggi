@@ -45,6 +45,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 60%;
   margin-right: 15px;
   margin-left: 15px;
+  cursor: default;
 }
 .navbar .titolo span:first-child {
   color: #0062ae;
@@ -67,7 +68,7 @@ body::-webkit-scrollbar-thumb:hover {
   height: 25%;
   filter: drop-shadow(0 0 5px #00000015);
   user-select: none;
-  cursor: pointer;
+  cursor: default;
 }
 .polNav {
   fill: #e6e6e6;
@@ -106,6 +107,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 26px;
   transform: rotateZ(15deg);
   pointer-events: all;
+  cursor: default;
 }
 #btnRisultati {
   color: #0062ae;
@@ -151,12 +153,19 @@ body::-webkit-scrollbar-thumb:hover {
   .navbar .titolo {
     display: block;
     font-size: 30px !important;
+    cursor: pointer;
   }
   .navbar .logoN {
     height: 70% !important;
   }
+  .navbar .btnN {
+    cursor: pointer;
+  }
   .containerN {
     top: 100px;
     width: 30%;
+  }
+  .btnRefN {
+    cursor: pointer;
   }
 }
