@@ -1,0 +1,16 @@
+<svg viewBox="0 0 500 500">
+      <defs>
+        <style>
+          .cerchiA {
+            fill: #ffffff;
+            opacity: 0.45;
+          }
+        </style>
+      </defs>
+      <circle class="cerchiA cA1" cx="10" cy="10" r="10" />
+      <circle class="cerchiA cA2" cx="226" cy="220" r="10" />
+      <circle class="cerchiA cA3" cx="167" cy="395" r="10" />
+      <circle class="cerchiA cA4" cx="371" cy="326" r="10" />
+      <circle class="cerchiA cA5" cx="76" cy="21" r="10" />
+      <circle class="cerchiA cA6" cx="200" cy="603" r="10" />
+    </svg>

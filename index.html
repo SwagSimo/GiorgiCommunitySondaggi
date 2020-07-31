@@ -1,85 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
-  <title>Giorgi's Community | Sondaggi</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Bree+Serif|Pacifico|Lato|Montserrat&display=swap"
-    rel="stylesheet">
-  <link rel="icon" href="img/icona.png" type="image/png" />
+  <title>Giorgi's Community ~ Sondaggi | Home</title>
 
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-  <script src="librerie_p5\p5.js"></script>
-  <script src="librerie_p5\p5.dom.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.5.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.5.1/firebase-analytics.js"></script>
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&family=Sriracha&family=Roboto:ital,wght@0,100;0,400;0,500;1,100;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styleDefault.css">
+  <link rel="stylesheet" href="styleHome.css">
 </head>
 
 <body>
+  <nav class="navbar">
+    <img class="logoN" src="img/Logo Giorgi's Community con scritta.svg" title="Giorgi's Community">
+    <a class="titolo" href="index.html" title="Home"><span>Giorgi's </span><span>Community </span><span>~
+      </span><span>Sondaggi</span></a>
+    <img class="btnN" src="img/btnNav.svg" alt="">
 
-  <nav>
-    <img src="img/Logo Giorgi's Community.svg" alt="" width="70px" title="Giorgi's Community">
-
-    <h3><span id="s1">Giorgi's </span><span id="s2">Community</span><span id="s3"> ~ </span><span
-        id="s4">Sondaggi</span>
-    </h3>
-
-    <div>
-      <a class="btnAzione" id="aInfo" href="./ris.html">risultati</a>
-      <a class="btnAzione" id="aLogin" href="javascript:void(0)">login</a>
+    <div class="containerN">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.97 786.4">
+        <polygon class="polNav" points="744.97 0 0 0 571.36 786.4 744.97 660.26 744.97 0" />
+      </svg>
+      <a href="#" id="btnRisultati" class="btnRefN">Risultati</a>
+      <a href="#" id="btnLogin" class="btnRefN">Login</a>
     </div>
   </nav>
 
-  <section>
-    <img src="img/svg sondaggio.svg" alt="" width="350px">
-    <div class="contenuto">
-      <h3 id="nome">Simone Micelli - Teo Cannalire</br>Lorenzo Longo - Gaia Pacciolla</h3>
-      <h3 id="carica">Rappresentanti d'istituto</h3>
-      <h3 id="info">Ciao! Benvenuto nel sito per i sondaggi del Giorgi. Tutto ciò che devi fare è effettuare il login
-        (SE RICHIESTO DAL SONDAGGIO),
-        cliccare il
-        sondaggio attivo e selezionare
-        la tua scelta.</br>Grazie per la collaborazione! ;)
-      </h3>
+  <div class="giorgiImg">
+    <img src="Img/Sfondo Giorgi.png" alt="ITT G. Giorgi" class="sfondoG">
+    <div class="scolora"></div>
+    <div class="rI">
+      <h3>Rappresentanti d'Istituto</h3>
+      <h4 id="n1"> • Simone Micelli</h4>
+      <h4 id="n2"> • Teo Cannalire</h4>
+      <h4 id="n3"> • Gaia Pacciolla</h4>
+      <h4 id="n4"> • Lorenzo Longo</h4>
     </div>
-  </section>
+    <svg viewBox="0 0 100 100" class="cerchiAnim">
+      <defs>
+        <style>
+          .cerchiA {
+            fill: #ffffff;
+            opacity: 0;
+          }
+        </style>
+      </defs>
+      <circle class="cerchiA cA1" cx="60" cy="20" r="4" />
+      <circle class="cerchiA cA2" cx="10" cy="32" r="4" />
+      <circle class="cerchiA cA4" cx="25" cy="60" r="4" />
+      <circle class="cerchiA cA3" cx="45" cy="50" r="4" />
+      <circle class="cerchiA cA5" cx="60" cy="90" r="4" />
+      <circle class="cerchiA cA6" cx="10" cy="95" r="4" />
+    </svg>
+  </div>
 
-  <section id="container">
-    <div class="cardSondaggio">
-      <div class="fade fade1">
-        <div class="sond">
-
-        </div>
+  <div class="contSondaggio">
+    <div class="beforeS"></div>
+    <div class="preSondaggio">
+      <h2 class="titolo&giorno">Sondaggio</br>~ 06/07/20 ~</h2>
+    </div>
+    <div class="sondaggio">
+      <h2 class="titSondaggio">Prova titolo sondaggio</h2>
+      <p class="infoSondaggio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas velit ducimus quisquam
+        recusandae, expedita est consectetur quam minima dicta quae rem tenetur</p>
+      <div class="contOpzioni">
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 1</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 2</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 3</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 4</a>
       </div>
-
-      <div class="fade fade2">
-        <h2 class="preview">Attendi...</h2>
+      <div class="contInviaScelta">
+        <a href="javascript:void(0)" class="inviaScelta">Invia</a>
+        <div class="bdr bdr1"></div>
+        <div class="bdr bdr2"></div>
+        <div class="bdr bdr3"></div>
+        <div class="bdr bdr4"></div>
       </div>
     </div>
-  </section>
+    <div class="afterS"></div>
+  </div>
 
-  <footer>
-    <h3>Copyright © 2019 Giorgi's Community</br>some rights reserved</br>Contatti: simonemicelli47@gmail.com</h3>
-
-    <div>
-      <a href="https://www.facebook.com/ITTGiorgiBrindisi/">facebook</a>
-      <a href="https://www.instagram.com/giorgi_community/">instagram</a>
+  <div class="contSondaggio">
+    <div class="beforeS"></div>
+    <div class="preSondaggio">
+      <h2 class="titolo&giorno">Sondaggio</br>~ 06/07/20 ~</h2>
     </div>
-  </footer>
+    <div class="sondaggio">
+      <h2 class="titSondaggio">Prova titolo sondaggio</h2>
+      <p class="infoSondaggio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas velit ducimus quisquam
+        recusandae, expedita est consectetur quam minima dicta quae rem tenetur</p>
+      <div class="contOpzioni">
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 1</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 2</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 3</a>
+        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 4</a>
+      </div>
+      <div class="contInviaScelta">
+        <a href="javascript:void(0)" class="inviaScelta">Invia</a>
+        <div class="bdr bdr1"></div>
+        <div class="bdr bdr2"></div>
+        <div class="bdr bdr3"></div>
+        <div class="bdr bdr4"></div>
+      </div>
+    </div>
+    <div class="afterS"></div>
+  </div>
 
-  <script type="application/javascript">
-    let IP_ADDRESS = null;
-    function getIP(json) { IP_ADDRESS = json.ip }
-  </script>
-  <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+  <div class="bottomPage">
+    <div class="contatti">
+      <p id="email">Contatti ~ simonemicelli47@gmail.com</p>
+      <p id="copyright">Copyright © 2020 ~ all rights reserved</p>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/giorgi_community/" class="insta"><img
+          src="/Img/1024px-Instagram_simple_icon.svg.png"> Instagram ~ giorgi_community</a>
+    </div>
+  </div>
 
-  <script src="main\sketch.js"></script>
+  <script src="defaultEvents.js"></script>
 </body>
 
 </html>
