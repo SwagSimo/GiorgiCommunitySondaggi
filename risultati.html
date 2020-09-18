@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <title>Giorgi's Community ~ Sondaggi | Home</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+  <link rel="icon" href="Img/Logo Giorgi's Community.png" type="image/png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&family=Sriracha&family=Roboto:ital,wght@0,100;0,400;0,500;1,100;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styleDefault.css">
+  <link rel="stylesheet" href="styleHome.css">
+  <link rel="stylesheet" href="styleRis.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <img class="logoN" src="Img/Logo Giorgi's Community con scritta.svg" title="Giorgi's Community">
+    <a class="titolo" href="index.html" title="Home"><span>Giorgi's </span><span>Community </span><span>~
+      </span><span>Sondaggi</span></a>
+    <img class="btnN" src="Img/btnNav.svg" alt="">
+
+    <div class="containerN">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.97 786.4">
+        <polygon class="polNav" points="744.97 0 0 0 571.36 786.4 744.97 660.26 744.97 0" />
+      </svg>
+      <a href="index.html" id="btnRisultati" class="btnRefN">Home</a>
+      <a href="javascript:void(0)" id="btnLogin" class="btnRefN">Login</a>
+    </div>
+  </nav>
+
+  <div class="containerRis">
+
+  </div>
+
+
+  <div class="bottomPage">
+    <div class="contatti">
+      <p id="email">Contatti ~ simonemicelli47@gmail.com</p>
+      <p id="copyright">Copyright © 2020 ~ all rights reserved</p>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/giorgi_community/" class="insta"><img
+          src="Img/1024px-Instagram_simple_icon.svg.png"> Instagram ~ giorgi_community</a>
+    </div>
+  </div>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDtDeoEfaTRX7NZnKhjLHUt4labN5e3EN0",
+      authDomain: "g-com-data.firebaseapp.com",
+      databaseURL: "https://g-com-data.firebaseio.com",
+      projectId: "g-com-data",
+      storageBucket: "g-com-data.appspot.com",
+      messagingSenderId: "197840911740",
+      appId: "1:197840911740:web:5058d5270b6bb27e3738f9",
+      measurementId: "G-9ZXY35HLEC"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+  <script src="defaultEvents2.js"></script>
+</body>
+
+</html>

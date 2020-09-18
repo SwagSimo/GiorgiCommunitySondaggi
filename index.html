@@ -7,6 +7,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+  <link rel="icon" href="Img/Logo Giorgi's Community.png" type="image/png" />
   <link
     href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&family=Sriracha&family=Roboto:ital,wght@0,100;0,400;0,500;1,100;1,500&display=swap"
     rel="stylesheet">
@@ -25,13 +37,13 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.97 786.4">
         <polygon class="polNav" points="744.97 0 0 0 571.36 786.4 744.97 660.26 744.97 0" />
       </svg>
-      <a href="#" id="btnRisultati" class="btnRefN">Risultati</a>
-      <a href="#" id="btnLogin" class="btnRefN">Login</a>
+      <a href="risultati.html" id="btnRisultati" class="btnRefN">Risultati</a>
+      <a href="javascript:void(0)" id="btnLogin" class="btnRefN">Login</a>
     </div>
   </nav>
 
   <div class="giorgiImg">
-    <img src="Img/Sfondo Giorgi.png" alt="ITT G. Giorgi" class="sfondoG">
+    <img src="Img/Sfondo Giorgi.jpg" alt="ITT G. Giorgi" class="sfondoG">
     <div class="scolora"></div>
     <div class="rI">
       <h3>Rappresentanti d'Istituto</h3>
@@ -49,65 +61,99 @@
           }
         </style>
       </defs>
-      <circle class="cerchiA cA1" cx="60" cy="20" r="4" />
-      <circle class="cerchiA cA2" cx="10" cy="32" r="4" />
-      <circle class="cerchiA cA4" cx="25" cy="60" r="4" />
-      <circle class="cerchiA cA3" cx="45" cy="50" r="4" />
-      <circle class="cerchiA cA5" cx="60" cy="90" r="4" />
-      <circle class="cerchiA cA6" cx="10" cy="95" r="4" />
+
+      <!-- <path class="cerchiA cA1" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/>
+      <path class="cerchiA cA2" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/>
+      <path class="cerchiA cA3" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/>
+      <path class="cerchiA cA4" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/>
+      <path class="cerchiA cA5" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/>
+      <path class="cerchiA cA6" d="M143.64, 52.18, 94,45, 71.82, 0, 49.63, 45, 0, 52.18l35.91, 35-8.48, 49.43, 44.39-23.34, 44.38, 23.34-8.47-49.43ZM71.82, 97, 43.45, 112l5.42-31.58L25.92, 58l31.72-4.61L71.82, 24.65, 86, 53.39, 117.71, 58,94.77, 80.37, 100.18, 112Z"/> -->
+
+      <path class="cerchiA cA1" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+      <path class="cerchiA cA2" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+      <path class="cerchiA cA3" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+      <path class="cerchiA cA4" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+      <path class="cerchiA cA5" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+      <path class="cerchiA cA6" d="M154.54,56.14h-59L77.27,0,59,56.14H0L47.75,90.83,29.51,147l47.76-34.69L125,147,106.78,90.83ZM77.27,93.23,53,110.9l9.28-28.58L37.93,64.66H68l9.29-28.58,9.28,28.58H116.6L92.29,82.32l9.29,28.58Z"/>
+
     </svg>
   </div>
 
-  <div class="contSondaggio">
-    <div class="beforeS"></div>
-    <div class="preSondaggio">
-      <h2 class="titolo&giorno">Sondaggio</br>~ 06/07/20 ~</h2>
-    </div>
-    <div class="sondaggio">
-      <h2 class="titSondaggio">Prova titolo sondaggio</h2>
-      <p class="infoSondaggio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas velit ducimus quisquam
-        recusandae, expedita est consectetur quam minima dicta quae rem tenetur</p>
-      <div class="contOpzioni">
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 1</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 2</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 3</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 4</a>
-      </div>
-      <div class="contInviaScelta">
-        <a href="javascript:void(0)" class="inviaScelta">Invia</a>
-        <div class="bdr bdr1"></div>
-        <div class="bdr bdr2"></div>
-        <div class="bdr bdr3"></div>
-        <div class="bdr bdr4"></div>
-      </div>
-    </div>
-    <div class="afterS"></div>
+  <div class="compIn">
+    <div class="comp2"><span style="color:#ff00a4;">-</span><span style="color:#ff009c;">-</span><span
+        style="color:#ff0094;">-</span><span style="color:#ff008b;">-</span><span style="color:#ff0083;">-</span><span
+        style="color:#ff007b;">-</span><span style="color:#ff0073;">-</span><span style="color:#ff006b;">-</span><span
+        style="color:#ff0062;">-</span><span style="color:#ff005a;">-</span><span style="color:#ff0052;">-</span><span
+        style="color:#ff004a;">-</span><span style="color:#ff0042;">-</span><span style="color:#ff0039;">-</span><span
+        style="color:#ff0031;">-</span><span style="color:#ff0029;">-</span><span style="color:#ff0021;">-</span><span
+        style="color:#ff0019;">-</span><span style="color:#ff0010;">-</span><span style="color:#ff0008;">-</span><span
+        style="color:#ff0000;">-</span><span style="color:#ff0600;">-</span><span style="color:#ff0d00;">-</span><span
+        style="color:#ff1300;">-</span><span style="color:#ff1a00;">-</span><span style="color:#ff2000;">-</span><span
+        style="color:#ff2600;">-</span><span style="color:#ff2d00;">-</span><span style="color:#ff3300;">-</span><span
+        style="color:#ff3a00;">-</span><span style="color:#ff4000;">-</span><span style="color:#ff4600;">-</span><span
+        style="color:#ff4d00;">-</span><span style="color:#ff5300;">-</span><span style="color:#ff5a00;">-</span><span
+        style="color:#ff6000;">-</span><span style="color:#ff6600;">-</span><span style="color:#ff6d00;">-</span><span
+        style="color:#ff7300;">-</span><span style="color:#ff7a00;">-</span><span style="color:#ff8000;">-</span><span
+        style="color:#ff8400;">-</span><span style="color:#ff8800;">-</span><span style="color:#ff8c00;">-</span><span
+        style="color:#ff9000;">-</span><span style="color:#ff9400;">-</span><span style="color:#ff9800;">-</span><span
+        style="color:#ff9c00;">-</span><span style="color:#ffa000;">-</span><span style="color:#ffa400;">-</span><span
+        style="color:#ffa700;">-</span><span style="color:#ffab00;">-</span><span style="color:#ffaf00;">-</span><span
+        style="color:#ffb300;">-</span><span style="color:#ffb700;">-</span><span style="color:#ffbb00;">-</span><span
+        style="color:#ffbf00;">-</span><span style="color:#ffc300;">-</span><span style="color:#ffc700;">-</span><span
+        style="color:#ffcb00;">-</span><span style="color:#ffcf00;">-</span></div>
+    <div class="comp2"><span style="color:#ff00a4;">!</span><span style="color:#ff0097;"> </span><span
+        style="color:#ff008b;">P</span><span style="color:#ff007e;">e</span><span style="color:#ff0072;">r</span><span
+        style="color:#ff0065;"> </span><span style="color:#ff0058;">c</span><span style="color:#ff004c;">o</span><span
+        style="color:#ff003f;">m</span><span style="color:#ff0032;">p</span><span style="color:#ff0026;">i</span><span
+        style="color:#ff0019;">l</span><span style="color:#ff000d;">a</span><span style="color:#ff0000;">r</span><span
+        style="color:#ff0900;">e</span><span style="color:#ff1200;"> </span><span style="color:#ff1b00;">i</span><span
+        style="color:#ff2500;"> </span><span style="color:#ff2e00;">s</span><span style="color:#ff3700;">o</span><span
+        style="color:#ff4000;">n</span><span style="color:#ff4900;">d</span><span style="color:#ff5200;">a</span><span
+        style="color:#ff5b00;">g</span><span style="color:#ff6500;">g</span><span style="color:#ff6e00;">i</span><span
+        style="color:#ff7700;"> </span><span style="color:#ff8000;">è</span><span style="color:#ff8600;"> </span><span
+        style="color:#ff8c00;">n</span><span style="color:#ff9200;">e</span><span style="color:#ff9800;">c</span><span
+        style="color:#ff9e00;">e</span><span style="color:#ffa400;">s</span><span style="color:#ffab00;">s</span><span
+        style="color:#ffb100;">a</span><span style="color:#ffb700;">r</span><span style="color:#ffbd00;">i</span><span
+        style="color:#ffc300;">o</span><span style="color:#ffc900;"> </span><span style="color:#ffcf00;">!</span></div>
+    <div class="comp2"><span style="color:#ff00a4;">!</span><span style="color:#ff0097;"> </span><span
+        style="color:#ff008b;">a</span><span style="color:#ff007e;">c</span><span style="color:#ff0072;">c</span><span
+        style="color:#ff0065;">e</span><span style="color:#ff0058;">d</span><span style="color:#ff004c;">e</span><span
+        style="color:#ff003f;">r</span><span style="color:#ff0032;">e</span><span style="color:#ff0026;"> </span><span
+        style="color:#ff0019;">c</span><span style="color:#ff000d;">o</span><span style="color:#ff0000;">n</span><span
+        style="color:#ff0a00;"> </span><span style="color:#ff1400;">l</span><span style="color:#ff1e00;">'</span><span
+        style="color:#ff2700;">a</span><span style="color:#ff3100;">c</span><span style="color:#ff3b00;">c</span><span
+        style="color:#ff4500;">o</span><span style="color:#ff4f00;">u</span><span style="color:#ff5900;">n</span><span
+        style="color:#ff6200;">t</span><span style="color:#ff6c00;"> </span><span style="color:#ff7600;">i</span><span
+        style="color:#ff8000;">s</span><span style="color:#ff8600;">t</span><span style="color:#ff8c00;">i</span><span
+        style="color:#ff9200;">t</span><span style="color:#ff9800;">u</span><span style="color:#ff9e00;">z</span><span
+        style="color:#ffa400;">i</span><span style="color:#ffab00;">o</span><span style="color:#ffb100;">n</span><span
+        style="color:#ffb700;">a</span><span style="color:#ffbd00;">l</span><span style="color:#ffc300;">e</span><span
+        style="color:#ffc900;"> </span><span style="color:#ffcf00;">!</span></div>
+    <div class="comp2"><span style="color:#ff00a4;">-</span><span style="color:#ff009c;">-</span><span
+        style="color:#ff0094;">-</span><span style="color:#ff008b;">-</span><span style="color:#ff0083;">-</span><span
+        style="color:#ff007b;">-</span><span style="color:#ff0073;">-</span><span style="color:#ff006b;">-</span><span
+        style="color:#ff0062;">-</span><span style="color:#ff005a;">-</span><span style="color:#ff0052;">-</span><span
+        style="color:#ff004a;">-</span><span style="color:#ff0042;">-</span><span style="color:#ff0039;">-</span><span
+        style="color:#ff0031;">-</span><span style="color:#ff0029;">-</span><span style="color:#ff0021;">-</span><span
+        style="color:#ff0019;">-</span><span style="color:#ff0010;">-</span><span style="color:#ff0008;">-</span><span
+        style="color:#ff0000;">-</span><span style="color:#ff0600;">-</span><span style="color:#ff0d00;">-</span><span
+        style="color:#ff1300;">-</span><span style="color:#ff1a00;">-</span><span style="color:#ff2000;">-</span><span
+        style="color:#ff2600;">-</span><span style="color:#ff2d00;">-</span><span style="color:#ff3300;">-</span><span
+        style="color:#ff3a00;">-</span><span style="color:#ff4000;">-</span><span style="color:#ff4600;">-</span><span
+        style="color:#ff4d00;">-</span><span style="color:#ff5300;">-</span><span style="color:#ff5a00;">-</span><span
+        style="color:#ff6000;">-</span><span style="color:#ff6600;">-</span><span style="color:#ff6d00;">-</span><span
+        style="color:#ff7300;">-</span><span style="color:#ff7a00;">-</span><span style="color:#ff8000;">-</span><span
+        style="color:#ff8400;">-</span><span style="color:#ff8800;">-</span><span style="color:#ff8c00;">-</span><span
+        style="color:#ff9000;">-</span><span style="color:#ff9400;">-</span><span style="color:#ff9800;">-</span><span
+        style="color:#ff9c00;">-</span><span style="color:#ffa000;">-</span><span style="color:#ffa400;">-</span><span
+        style="color:#ffa700;">-</span><span style="color:#ffab00;">-</span><span style="color:#ffaf00;">-</span><span
+        style="color:#ffb300;">-</span><span style="color:#ffb700;">-</span><span style="color:#ffbb00;">-</span><span
+        style="color:#ffbf00;">-</span><span style="color:#ffc300;">-</span><span style="color:#ffc700;">-</span><span
+        style="color:#ffcb00;">-</span><span style="color:#ffcf00;">-</span></div>
   </div>
 
-  <div class="contSondaggio">
-    <div class="beforeS"></div>
-    <div class="preSondaggio">
-      <h2 class="titolo&giorno">Sondaggio</br>~ 06/07/20 ~</h2>
-    </div>
-    <div class="sondaggio">
-      <h2 class="titSondaggio">Prova titolo sondaggio</h2>
-      <p class="infoSondaggio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas velit ducimus quisquam
-        recusandae, expedita est consectetur quam minima dicta quae rem tenetur</p>
-      <div class="contOpzioni">
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 1</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 2</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 3</a>
-        <a class="btnOpzioni btnUnselected" href="javascript:void(0)">Opzione 4</a>
-      </div>
-      <div class="contInviaScelta">
-        <a href="javascript:void(0)" class="inviaScelta">Invia</a>
-        <div class="bdr bdr1"></div>
-        <div class="bdr bdr2"></div>
-        <div class="bdr bdr3"></div>
-        <div class="bdr bdr4"></div>
-      </div>
-    </div>
-    <div class="afterS"></div>
+  <div id="Container">
+
   </div>
 
   <div class="bottomPage">
@@ -121,7 +167,25 @@
     </div>
   </div>
 
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDtDeoEfaTRX7NZnKhjLHUt4labN5e3EN0",
+      authDomain: "g-com-data.firebaseapp.com",
+      databaseURL: "https://g-com-data.firebaseio.com",
+      projectId: "g-com-data",
+      storageBucket: "g-com-data.appspot.com",
+      messagingSenderId: "197840911740",
+      appId: "1:197840911740:web:5058d5270b6bb27e3738f9",
+      measurementId: "G-9ZXY35HLEC"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+  <script src="op.js"></script>
   <script src="defaultEvents.js"></script>
+
+
 </body>
 
 </html>

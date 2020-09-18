@@ -10,12 +10,13 @@
   position: absolute;
   height: 100vh;
   z-index: 0;
+  filter: saturate(150%);
 }
 .scolora {
   position: absolute;
   width: 100%; height: 100%;
   z-index: 1;
-  background-color: rgba(5, 5, 94, 0.42);
+  background-color: rgba(0, 0, 197, 0.35);
 }
 .giorgiImg .rI {
   z-index: 2;
@@ -83,6 +84,7 @@
     opacity: 0;
     left: 80px;
   }
+
   100% {
     opacity: 1;
     left: 0px;
@@ -94,48 +96,106 @@
   top: 50%; transform: translateY(-50%);
   left: 20px; height: 40%;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.75));
-  /* filter: blur(5px); */
 }
 .cA1 {
-  opacity: 0;
-  animation: cerchi 1.5s 400ms infinite alternate ease;
+  animation: cerchi1 1.5s 400ms infinite alternate ease-in-out;
 }
 .cA2 {
-  opacity: 0;
-  animation: cerchi 1.5s 900ms infinite alternate ease;
+  animation: cerchi2 1.5s 900ms infinite alternate ease-in-out;
 }
 .cA3 {
-  opacity: 0;
-  animation: cerchi 1.5s 1100ms infinite alternate ease;
+  animation: cerchi3 1.5s 1100ms infinite alternate ease-in-out;
 }
 .cA4 {
-  opacity: 0;
-  animation: cerchi 1.5s 500ms infinite alternate ease;
+  animation: cerchi4 1.5s 500ms infinite alternate ease-in-out;
 }
 .cA5 {
-  opacity: 0;
-  animation: cerchi 1.5s 600ms infinite alternate ease;
+  animation: cerchi5 1.5s 600ms infinite alternate ease-in-out;
 }
 .cA6 {
-  opacity: 0;
-  animation: cerchi 1.5s 750ms infinite alternate ease;
+  animation: cerchi6 1.5s 750ms infinite alternate ease-in-out;
 }
-@keyframes cerchi {
+@keyframes cerchi1 {
   0% {
     opacity: 0;
-    transform: translateX(0);
+    transform: scale(0.11) translateX(calc(460% + 0px)) translateY(40%);
   }
   50% {
     opacity: 0.45;
   }
   100% {
     opacity: 0;
-    transform: translateX(7px);
+    transform: scale(0.11) translateX(calc(460% + 50px)) translateY(40%);
+  }
+}
+@keyframes cerchi2 {
+  0% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(30% - 15px)) translateY(60%);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(30% + 15px)) translateY(60%);
+  }
+}
+@keyframes cerchi3 {
+  0% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(60% + 0px)) translateY(400%);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(60% + 40px)) translateY(400%);
+  }
+}
+@keyframes cerchi4 {
+  0% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(450% + 0px)) translateY(380%);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(450% + 30px)) translateY(380%);
+  }
+}
+@keyframes cerchi5 {
+  0% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(550% - 20px)) translateY(640%);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(550% + 40px)) translateY(640%);
+  }
+}
+@keyframes cerchi6 {
+  0% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(60% + 0px)) translateY(700%);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.11) translateX(calc(60% + 20px)) translateY(700%);
   }
 }
 
 .contSondaggio {
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex; flex-direction: column;
   justify-content: space-around; align-items: center;
   position: relative; overflow: hidden;
@@ -147,7 +207,7 @@
 }
 .contSondaggio .beforeS {
   display: block;
-  background-image: linear-gradient(to bottom, #ff3700 0%, #ffd500 100%);
+  background-image: linear-gradient(to bottom, #ff1e00 0%, #ffd500 100%);
   position: absolute;
   height: 100%; width: 50%; left: 0;
   z-index: 1;
@@ -159,7 +219,7 @@
 }
 .contSondaggio .afterS {
   display: block;
-  background-image: linear-gradient(to bottom, #ff3700 0%, #ffd500 100%);
+  background-image: linear-gradient(to bottom, #ff1e00 0%, #ffd500 100%);
   position: absolute;
   height: 100%; width: 50%; left: 50%;
   z-index: 1;
@@ -179,6 +239,7 @@
   color: #e4e4e4;
   text-shadow: 0 2px 3px rgb(156, 156, 156);
   pointer-events: none;
+  user-select: none;
 }
 .sondaggio {
   display: flex; flex-direction: column;
@@ -190,6 +251,7 @@
   font-weight: bolder; letter-spacing: 2px;
   font-size: 26px; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   user-select: none;
+  filter: brightness(130%) contrast(40%) saturate(300%);
 
   background-image: linear-gradient(to right, rgb(0, 0, 255) 0%, rgb(255, 0, 0) 100%);
   background-size: 100%;
@@ -209,6 +271,7 @@
   display: grid; width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   row-gap: 15px; column-gap: 10px; margin-bottom: 30px;
+  text-align: center;
 }
 .sondaggio .contOpzioni .btnOpzioni {
   font-size: 18px; font-family: 'Roboto', sans-serif;
@@ -220,7 +283,7 @@
   color: #ffcfcf;
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.7);
   
-  background-image: linear-gradient(to right, #ff9900, rgb(174, 0, 255) 50%, #0066ff);
+  background-image: linear-gradient(to right, #ff9900, rgb(255, 0, 234) 50%, #0066ff);
   background-size: 600%;
   transition: all 0.6s ease;
 
@@ -294,69 +357,20 @@
 .contInviaScelta:hover .inviaScelta {
   text-shadow: 0 0 4px rgba(255, 0, 0, 0.39);
 }
+.compIn {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px;
+  text-shadow: 0 0 3px #fff, 0 0 4px #0000008a;
+  filter: contrast(200%) saturate(180%) hue-rotate(-30deg); 
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+.comp2 { margin-top: 0 !important; }
 
-.bottomPage {
-  width: 100%;
-  margin-top: 100px;
-  display: flex; flex-direction: column; align-items: center;
 
-  background-image: linear-gradient(to top, #bdbdbd, #ffffff);
-}
-.bottomPage .contatti {
-  margin-top: 20px;
-  font-family: 'Roboto', sans-serif;
-  font-style: italic; font-size: 16px;
-}
-#email {
-  background-image: linear-gradient(to right, rgb(0, 0, 255) 0%, rgb(255, 0, 0) 100%) !important;
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  margin-bottom: 5px;
-  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.22));
-}
-#copyright {
-  background-image: linear-gradient(to right, rgb(0, 0, 255) 0%, rgb(255, 0, 0) 100%) !important;
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.22));
-}
-.social {
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-.social .insta {
-  line-height: 28px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold; font-size: 18px;
-  text-decoration: none;
-  display: flex; justify-content: center; align-items: center;
-
-  background-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-  background-size: 100%;
-  background-repeat: repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.22));
-  user-select: none;
-  cursor: default;
-}
-.social img {
-  height: 20px;
-  margin-right: 5px;
-}
 
 
 
@@ -414,30 +428,21 @@
   .contOpzioni {
     margin-bottom: 41px !important;
   }
-
-  .bottomPage .contatti {
-    margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic; font-size: 22px;
-    display: flex; justify-content: center;
-  }
-  #email {
-    margin-right: 20px;
-  }
-  #copyright {
-    background-image: linear-gradient(to left, rgb(0, 0, 255) 0%, rgb(255, 0, 0) 100%) !important;
-  }
-  .social .insta {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .social img {
-    height: 24px;
-  }
   .sondaggio .contOpzioni .btnOpzioni {
     cursor: pointer;
   }
   .contInviaScelta {
     cursor: pointer;
+  }
+  .sondaggio {
+    width: 80% !important;
+  }
+  .sondaggio .contOpzioni {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    row-gap: 15px; column-gap: 10px;
+  }
+  .compIn {
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 }
