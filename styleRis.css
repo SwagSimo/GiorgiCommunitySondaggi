@@ -78,6 +78,9 @@
 .bottomPage {
     display: none !important;
 }
+#btnLogin {
+    display: none !important;
+}
 @media only screen and (max-width: 1024px) {
   .containerRis {
     max-width: 50vw;
